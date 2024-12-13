@@ -180,6 +180,18 @@ if __name__ == "__main__":
             x_list.append(x)
             y_list.append(y)
 
+    # # Get valid (x, y) with random y
+    # while i < n_case:
+    #     y = random.randint(0, q-1)
+    #     y_2 = number(y)*number(y)   # y^2
+    #     x_2 = (number(1) - (y_2)) / (number(q-1) - (d*y_2)) # x^2
+    #     if legendre_symbol(x_2.value, q)==1:    # x^2 have integer square root
+    #         i += 1
+    #         M_list.append( random.randint(0, (1 << 255) - 1) )
+    #         x = tonelli_shanks(x_2.value, q)
+    #         x_list.append(x)
+    #         y_list.append(y)
+            
     # Compute answer
     for i in range(n_case):
         point_P = point(number(x_list[i]), number(y_list[i]))
@@ -199,46 +211,46 @@ if __name__ == "__main__":
         file.writelines(";\nendpackage")
         
         
-    #### Add/Sub testcase ####
-    answer_add_list = []
-    answer_sub_list = []
-    for i in range(n_case):
-        answer_add_list.append((number(x_list[i])+number(y_list[i])).value)
-        answer_sub_list.append((number(x_list[i])-number(y_list[i])).value)
-    with open("add_sub_pattern.sv", "w", encoding="utf-8") as file:
-        file.writelines("package dat_0;\n")
-        file.writelines("integer pat_num = 0;\n")
-        file.writelines("reg [" +str(256*n_case-1)+ ":0] data1 = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{x_list[i]:064x}")
-        file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] data2 = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{y_list[i]:064x}")
-        file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] add_answer = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{answer_add_list[i]:064x}")
-        file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] sub_answer = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{answer_sub_list[i]:064x}")   
-        file.writelines(";\nendpackage")
+    # #### Add/Sub testcase ####
+    # answer_add_list = []
+    # answer_sub_list = []
+    # for i in range(n_case):
+    #     answer_add_list.append((number(x_list[i])+number(y_list[i])).value)
+    #     answer_sub_list.append((number(x_list[i])-number(y_list[i])).value)
+    # with open("add_sub_pattern.sv", "w", encoding="utf-8") as file:
+    #     file.writelines("package dat_0;\n")
+    #     file.writelines("integer pat_num = 0;\n")
+    #     file.writelines("reg [" +str(256*n_case-1)+ ":0] data1 = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{x_list[i]:064x}")
+    #     file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] data2 = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{y_list[i]:064x}")
+    #     file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] add_answer = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{answer_add_list[i]:064x}")
+    #     file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] sub_answer = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{answer_sub_list[i]:064x}")   
+    #     file.writelines(";\nendpackage")
     
-    #### MM testcase ####
-    answer_mm_list = []
-    for i in range(n_case):
-        answer_mm_list.append((number(x_list[i])*number(y_list[i])).value)
-    with open("mm_pattern.sv", "w", encoding="utf-8") as file:
-        file.writelines("package dat_0;\n")
-        file.writelines("integer pat_num = 0;\n")
-        file.writelines("reg [" +str(256*n_case-1)+ ":0] data1 = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{x_list[i]:064x}")
-        file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] data2 = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{y_list[i]:064x}")
-        file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] mm_answer = " +str(256*n_case)+ "'h")
-        for i in range(n_case):
-            file.writelines(f"{answer_mm_list[i]:064x}")
-        file.writelines(";\nendpackage")
+    # #### MM testcase ####
+    # answer_mm_list = []
+    # for i in range(n_case):
+    #     answer_mm_list.append((number(x_list[i])*number(y_list[i])).value)
+    # with open("mm_pattern.sv", "w", encoding="utf-8") as file:
+    #     file.writelines("package dat_0;\n")
+    #     file.writelines("integer pat_num = 0;\n")
+    #     file.writelines("reg [" +str(256*n_case-1)+ ":0] data1 = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{x_list[i]:064x}")
+    #     file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] data2 = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{y_list[i]:064x}")
+    #     file.writelines(";\nreg [" +str(256*n_case-1)+ ":0] mm_answer = " +str(256*n_case)+ "'h")
+    #     for i in range(n_case):
+    #         file.writelines(f"{answer_mm_list[i]:064x}")
+    #     file.writelines(";\nendpackage")
 
         
         
