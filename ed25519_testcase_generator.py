@@ -162,7 +162,7 @@ def tonelli_shanks(k, p):
 if __name__ == "__main__":
     n_case = 1
     
-    #### Generate testcase  ####
+    #### Generate testcase ####
     M_list = []
     x_list = []
     y_list = []
