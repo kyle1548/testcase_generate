@@ -175,7 +175,7 @@ if __name__ == "__main__":
         y_2 = (number(1) - (number(q-1)*x_2)) / (number(1) - (d*x_2)) # y^2
         if legendre_symbol(y_2.value, q)==1:    # y^2 have integer square root
             i += 1
-            M_list.append( random.randint(q, (1 << 256) - 1) )
+            M_list.append( random.randint(0, (1 << 255) - 1) )
             y = tonelli_shanks(y_2.value, q)
             x_list.append(x)
             y_list.append(y)
